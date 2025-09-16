@@ -1,0 +1,115 @@
+
+
+
+
+
+
+/* CSS */
+.container {
+  display: flex;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto; /* Pushes right-column to the right */
+}
+.header-container {
+  background-color: #f2f2f2; /* Couleur de fond grise */
+  padding: 10px; /* Marge intérieure pour aérer le contenu */
+  text-align: center; /* Centrer le texte à l'intérieur de l'en-tête */
+}
+
+.header-text {
+  color: blue; /* Couleur bleue du texte */
+  font-size: 19px; /* Taille de police */
+  margin: 0; /* Supprimer les marges par défaut pour éviter l'espace supplémentaire */
+}
+.excel-table {
+  border: 1px solid #e1e1e1;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px;
+  margin: 20px 0;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.excel-table th, .excel-table td {
+  border: 1px solid #e1e1e1;
+  padding: 12px 20px;
+  text-align: left;
+}
+
+.excel-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  color: #333;
+}
+
+.excel-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.excel-table td[contenteditable="true"] {
+  background-color: #f8f8f8;
+  outline: none;
+  cursor: text;
+}
+
+.excel-table td[contenteditable="true"]:hover {
+  background-color: #e6eeff;
+}
+
+.excel-table td[contenteditable="true"]:focus {
+  background-color: #c1c5ff;
+  box-shadow: 0px 0px 3px hsl(245, 100%, 50%);
+}
+
+
+
+
+.cadre-annexes {
+  border: 1px solid #ccc;
+  padding: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.left-column {
+  flex: 1;
+  min-width: 0;
+}
+
+.right-column {
+  flex: 1;
+  min-width: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  
+
+
+
+
+

@@ -1,0 +1,73 @@
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+  <mat-grid-list cols="2" rowHeight="300px">
+    <mat-grid-tile>
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key">
+        <mat-form-field>
+          <input formControlName="raisonSociale" matInput placeholder="Raison Sociale*">
+          <mat-error>This field is mandatory.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="ville" matInput placeholder="Ville">
+         
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="rue" matInput placeholder="Rue*">
+          <mat-error *ngIf="service.form.controls['rue'].errors?.required">This field is mandatory.</mat-error>
+          <mat-error *ngIf="service.form.controls['rue'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="codepostal" matInput placeholder="Code Postal">
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="controles-container">
+        
+        <mat-form-field>
+          <mat-select formControlName="activite" placeholder="Activité">
+            <mat-option>None</mat-option>
+            <ng-container *ngFor="let activite of activiteService.array">
+              <mat-option value="{{activite.$key}}">{{activite.code}}-{{activite.name}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="hireDate" matInput [matDatepicker]="picker" placeholder="Hire Date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+       
+      
+        <div class="button-row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+          <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+        </div>
+      </div>
+      
+  
+      <mat-form-field>
+        <input formControlName="matriculefiscale" matInput placeholder="Matricule Fiscale*">
+        <mat-error *ngIf="service.form.controls['matriculefiscale'].errors?.required">This field is mandatory.</mat-error>
+        <mat-error *ngIf="service.form.controls['matriculefiscale'].errors?.minlength">7 characters only</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text"  formControlName="cle" matInput placeholder="Clé du Matricule Fiscale*">
+        <mat-error *ngIf="service.form.controls['cle'].errors?.required">This field is mandatory.</mat-error>
+        <mat-error *ngIf="service.form.controls['cle'].errors?.minlength">one character only</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" formControlName="categorie" matInput placeholder="Catégorie Contribuale*">
+        <mat-error *ngIf="service.form.controls['categorie'].errors?.required">This field is mandatory.</mat-error>
+        <mat-error *ngIf="service.form.controls['categorie'].errors?.minlength">one character only</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="num" matInput placeholder="Catégorie Contribuale*">
+        <mat-error *ngIf="service.form.controls['num'].errors?.required">This field is mandatory.</mat-error>
+        <mat-error *ngIf="service.form.controls['num'].errors?.exactLengthValidator">3 characters only.</mat-error>
+      </mat-form-field>
+    
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

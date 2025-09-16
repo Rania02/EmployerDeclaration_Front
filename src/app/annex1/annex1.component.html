@@ -1,0 +1,588 @@
+<br>
+<br>
+
+<!-- checkbox-list.component.html -->
+<!-- HTML -->
+
+
+<div class="cadre-annexes">
+  <h2>Annexes à déposer</h2>
+  <div class="container">
+    <div class="left-column">
+      <label><input type="checkbox">Annexe 1</label>
+      <label><input type="checkbox">Annexe 3</label>
+      <label><input type="checkbox">Annexe 5</label>
+      <label><input type="checkbox">Annexe 7</label>
+    </div>
+    <div class="right-column">
+      <label><input type="checkbox">Annexe 2</label>
+      <label><input type="checkbox">Annexe 4</label>
+      <label><input type="checkbox">Annexe 6</label>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<mat-tab-group>
+  <mat-tab label="annexe1">
+    
+
+    <header class="header-container">
+      <h1 class="header-text">Traitement, salaires, pensions,rentes viagères payés</h1>
+    </header>
+
+    
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Type Identifiant</th>
+            <th>Identifiant</th>
+            <th>Catégorie</th>
+            <th>Nom et Prénom/Raison Sociale</th>
+            <th>Activité</th>
+            <th>Adresse</th>
+            <th>Intérets des comptes speciaux depargnes</th>
+            <th>Intéréts des autres capitaux mobiliers</th>
+            <th>Intérés des prets hors Tunisie</th>
+            <th>Retenus opérés</th>
+            <th>Net servi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td contenteditable="true">{{ item.typeIdentifiant }}</td>
+            <td contenteditable="true">{{ item.identifiant }}</td>
+            <td contenteditable="true">{{ item.categorie }}</td>
+            <td contenteditable="true">{{ item.nom }}</td>
+            <td contenteditable="true">{{ item.activite }}</td>
+            <td contenteditable="true">{{ item.adresse }}</td>
+            <td contenteditable="true">{{ item.interetsco}}</td>
+            <td contenteditable="true">{{ item.interetsca }}</td>
+            <td contenteditable="true">{{ item.interetspe }}</td>
+            <td contenteditable="true">{{ item.retenues }}</td>
+            <td contenteditable="true">{{ item.net }}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button (click)="importFromExcel()">Importer depuis Excel</button>
+    <button (click)="exportToExcel()">Exporter vers Excel</button>
+    <input type="file" (change)="onFileChange($event)" accept=".xlsx" style="display: none;" #fileInput>
+    
+    
+    
+    <input type="file" (change)="onFileChange($event)" />
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="annexe2">
+    <header class="header-container">
+      <h1 class="header-text">Montants servis à des résidents en Tunisie , commissions, courtages, rémunérations payées aux salariés et aux
+        non-salariés , loyers, loyers des hôtels, honoraires servis à des
+        personnes soumises au régime réel, jetons de présence, plus-value immobilière,
+        Rémunérations payées en contrepartie de la performance dans la prestation des
+        services pour le compte d'autrui.</h1>
+    </header>
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Type Identifiant</th>
+            <th>MF/CIN</th>
+            <th>Catégorie</th>
+            <th>Nom et Prénom/Raison Sociale</th>
+            <th>Activité</th>
+            <th>Adresse</th>
+            <th>Type des montants servis</th>
+            <th>Montants servis aux activités non commerciales</th>
+            <th>Honoraires servis aux sociétés</th>
+            <th>Rémunérations occasionnelles</th>
+            <th>Plus-value immobilière</th>
+            <th>Loyers des Hotels payés aux sociétés</th>
+            <th>Rémunérations aux artistes</th>
+            <th>Retenues sur la TVA au titre des Montants >=1000D</th>
+            <th>Retenues opérés </th>
+            <th>Net servi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td contenteditable="true">{{ item.typeIdentifiant }}</td>
+            <td contenteditable="true">{{ item.identifiant }}</td>
+            <td contenteditable="true">{{ item.categorie }}</td>
+            <td contenteditable="true">{{ item.nom }}</td>
+            <td contenteditable="true">{{ item.activite }}</td>
+            <td contenteditable="true">{{ item.adresse }}</td>
+            <td contenteditable="true">{{ item.interetsco}}</td>
+            <td contenteditable="true">{{ item.interetsca }}</td>
+            <td contenteditable="true">{{ item.interetspe }}</td>
+            <td contenteditable="true">{{ item.retenues }}</td>
+            <td contenteditable="true">{{ item.net }}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <input type="file" (change)="onFileChange($event)" />
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="annexe3">
+    <header class="header-container">
+      <h1 class="header-text">Revenus des capitaux mobiliers, intérêts des comptesspéciaux d’épargne et intérêts des prêts</h1>
+    </header>
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Type Identifiant</th>
+            <th>Identifiant</th>
+            <th>Catégorie</th>
+            <th>Nom et Prénom/Raison Sociale</th>
+            <th>Activité</th>
+            <th>Adresse</th>
+            <th>Intérets des comptes speciaux depargnes</th>
+            <th>Intéréts des autres capitaux mobiliers</th>
+            <th>Intérés des prets hors Tunisie</th>
+            <th>Retenus opérés</th>
+            <th>Net servi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td contenteditable="true">{{ item.typeIdentifiant }}</td>
+            <td contenteditable="true">{{ item.identifiant }}</td>
+            <td contenteditable="true">{{ item.categorie }}</td>
+            <td contenteditable="true">{{ item.nom }}</td>
+            <td contenteditable="true">{{ item.activite }}</td>
+            <td contenteditable="true">{{ item.adresse }}</td>
+            <td contenteditable="true">{{ item.interetsco}}</td>
+            <td contenteditable="true">{{ item.interetsca }}</td>
+            <td contenteditable="true">{{ item.interetspe }}</td>
+            <td contenteditable="true">{{ item.retenues }}</td>
+            <td contenteditable="true">{{ item.net }}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <input type="file" (change)="onFileChange($event)" />
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="annexe4">
+    <header class="header-container">
+      <h1 class="header-text">montants servis à des personnes non résidentes ou
+        non établies en Tunisie au titre des honoraires, loyers, commissions, courtages,
+        redevances, jetons de présence, plus-value immobilière, valeurs mobilières à
+        l’exception des parts des actions et des plus-values provenant de la cession des
+        valeurs mobilières, Rémunérations payées en contrepartie de la performance dans la
+        prestation des services pour le compte d'autrui, Montants servis aux non-résidents établis
+        en Tunisie et qui ne procèdent pas au dépôt de la déclaration d'existence avant d'entamer
+        leur activité</h1>
+    </header>
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nature de l'identifiant</th>
+            <th>Identifiant</th>
+            <th>Catégorie</th>
+            <th>Nom et Prénom/Raison Sociale</th>
+            <th>Activité</th>
+            <th>Adresse</th>
+            <th>Type des montants servis aux activités non commerciales</th>
+            <th>Taux des honoraires</th>
+            <th>Honoraires</th>
+            <th>Taux des rémunérations payées aux non résidents </th>
+            <th>Montant des rémunérations payées aux non résidents </th>
+            <th>Taux de plus-value immobilière</th>
+            <th>Montant de la plus-value immobilière </th>
+            <th>Taux de plus-value de cession des actions</th>
+            <th>Montant plus-value de cession des actions </th>
+            <th>Taux des revenues mobiliers et jetons de présence </th>
+            <th>Revenues mobiliers et jeton de présence</th>
+            <th>Rémunérations ou revenues dans un Etat dont le régime fiscal est priviligié</th>
+            <th>Retenue a la source au titre de la TVA est de 100%</th>
+            <th>Retenues opérés  </th>
+            <th>Net Servi </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td contenteditable="true">{{ item.typeIdentifiant }}</td>
+            <td contenteditable="true">{{ item.identifiant }}</td>
+            <td contenteditable="true">{{ item.categorie }}</td>
+            <td contenteditable="true">{{ item.nom }}</td>
+            <td contenteditable="true">{{ item.activite }}</td>
+            <td contenteditable="true">{{ item.adresse }}</td>
+            <td contenteditable="true">{{ item.interetsco}}</td>
+            <td contenteditable="true">{{ item.interetsca }}</td>
+            <td contenteditable="true">{{ item.interetspe }}</td>
+            <td contenteditable="true">{{ item.retenues }}</td>
+            <td contenteditable="true">{{ item.net }}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <input type="file" (change)="onFileChange($event)" />
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="annexe5">
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nature de l'identifiant</th>
+            <th>Identifiant</th>
+            <th>Catégorie</th>
+            <th>Nom et Prénom/Raison Sociale</th>
+            <th>Activité</th>
+            <th>Adresse</th>
+            <th>Mnt>=1000D y compris la TVA des entreprises soumises a un IS de 10%</th>
+            <th>Mnt>=1000D y compris la TVA des entreprises soumises a un IS de 15%</th>
+            <th>Mnt>=1000D y compris la TVA des entreprises unipersonnelles</th>
+            <th>Mnt>=1000D y compris la TVA des autres entreprises</th>
+            <th>Retenue au titre de la TVA sur Mnt >=1000D</th>
+            <th>Retenus opérés</th>
+            <th>Net servi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td contenteditable="true">{{ item.typeIdentifiant }}</td>
+            <td contenteditable="true">{{ item.identifiant }}</td>
+            <td contenteditable="true">{{ item.categorie }}</td>
+            <td contenteditable="true">{{ item.nom }}</td>
+            <td contenteditable="true">{{ item.activite }}</td>
+            <td contenteditable="true">{{ item.adresse }}</td>
+            <td contenteditable="true">{{ item.interetsco}}</td>
+            <td contenteditable="true">{{ item.interetsca }}</td>
+            <td contenteditable="true">{{ item.interetspe }}</td>
+            <td contenteditable="true">{{ item.retenues }}</td>
+            <td contenteditable="true">{{ item.net }}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <header class="header-container">
+      <h1 class="header-text">Autres montants servis et soumis à la retenue à la
+        source,</h1>
+    </header>
+    <input type="file" (change)="onFileChange($event)" />
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="annexe6">
+    <header class="header-container">
+      <h1 class="header-text">Ristournes commerciales et non commerciales. +
+        Revenus des jeux de pari, de hasard et de loterie, Ventes des entreprises industrielles et
+        de commerce au profit des intervenants dans la distribution de biens et de produits et
+        services, qui ne dépassent pas 20.000 dinars par an</h1>
+    </header>
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nature de l'identifiant</th>
+            <th>Identifiant</th>
+            <th>Catégorie</th>
+            <th>Nom et Prénom/Raison Sociale</th>
+            <th>Activité</th>
+            <th>Adresse</th>
+            <th>Type de ristournes</th>
+            <th>Ristournes</th>
+            <th>Ventes aux P.P forfaitaire</th>
+            <th>Avance aux P.P forfaitaire</th>
+            <th>RAS sur les revenues des jeux </th>
+            <th>Mnt des ventes au profit des distributeurs 20.000DT/an</th>
+            <th>RAS sur les  ventes au profit des distributeurs 20.000DT/an</th>
+            <th>Mnts percus en espèces</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td contenteditable="true">{{ item.typeIdentifiant }}</td>
+            <td contenteditable="true">{{ item.identifiant }}</td>
+            <td contenteditable="true">{{ item.categorie }}</td>
+            <td contenteditable="true">{{ item.nom }}</td>
+            <td contenteditable="true">{{ item.activite }}</td>
+            <td contenteditable="true">{{ item.adresse }}</td>
+            <td contenteditable="true">{{ item.interetsco}}</td>
+            <td contenteditable="true">{{ item.interetsca }}</td>
+            <td contenteditable="true">{{ item.interetspe }}</td>
+            <td contenteditable="true">{{ item.retenues }}</td>
+            <td contenteditable="true">{{ item.net }}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <input type="file" (change)="onFileChange($event)" />
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="annexe7">
+    <header class="header-container">
+      <h1 class="header-text">Montants payés pour autrui.</h1>
+    </header>
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Nature de l'identifiant</th>
+            <th>Identifiant</th>
+            <th>Catégorie</th>
+            <th>Nom et Prénom/Raison Sociale</th>
+            <th>Activité</th>
+            <th>Adresse</th>
+            <th>Type mnts payés</th>
+            <th>Mnts payés </th>
+            <th>Retenue a la source</th>
+            <th>Net servi</th>
+      
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data">
+            <td contenteditable="true">{{ item.typeIdentifiant }}</td>
+            <td contenteditable="true">{{ item.identifiant }}</td>
+            <td contenteditable="true">{{ item.categorie }}</td>
+            <td contenteditable="true">{{ item.nom }}</td>
+            <td contenteditable="true">{{ item.activite }}</td>
+            <td contenteditable="true">{{ item.adresse }}</td>
+            <td contenteditable="true">{{ item.interetsco}}</td>
+            <td contenteditable="true">{{ item.interetsca }}</td>
+            <td contenteditable="true">{{ item.interetspe }}</td>
+            <td contenteditable="true">{{ item.retenues }}</td>
+            <td contenteditable="true">{{ item.net }}</td>
+         
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <input type="file" (change)="onFileChange($event)" />
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+  <mat-tab label="Tableau Récapitulatif">
+    <div class="excel-table">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2">Libellé</th>
+            <th colspan="2">Assiette</th>
+            <th>Taux</th>
+            <th>Retenus opérés</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>Traitements, salaires, pensions et rentes viagères ayant subi une retenue à la source selon le régime commun.</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">0.000%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>Traitements, salaires, rémunérations, primes et autres avantages payés aux étrangers.</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">20.00%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>La contribution sociale de solidarité due sur les traitements, salaires, rémunérations, indemnités.</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">0.000%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>Commissions, courtages, Loyers et rémunérations au titre des activités non commerciales servis aux personnes physique résidentes et établies.</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">10.00%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>Commissions, courtages, Loyers et rémunérations au servis aux personnes physiques non domiciliés ni établis en Tunisie.</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">15.00%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>Commissions, courtages, Loyers et rémunérations au servis aux personnes morales non domiciliés ni établis en Tunisie.</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">15.00%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>Honoraires servis aux personnes physiques non soumises au régime réel</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">10.00%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+          <tr>
+            <!-- Make the Libellé cell non-editable by omitting the contenteditable attribute -->
+            <td colspan="2">
+              <p>Honoraires servis aux personnes morales soumises à l’IS, aux groupements, aux sociétés de personnes et aux personnes physiques soumises à l’impôt sur le revenu selon le régime réel</p>
+            </td>
+            <!-- Other cells remain editable -->
+            <td colspan="2" contenteditable="true">0.000</td>
+            <td contenteditable="true">3.00%</td>
+            <td colspan="2" contenteditable="true">0.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+    <div *ngIf="dataLoaded">
+      <h4>Contenu du fichier Excel :</h4>
+      <table>
+        <thead>
+          <tr>
+            <th *ngFor="let column of tableColumns">{{ column }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of tableData">
+            <td *ngFor="let column of tableColumns">{{ row[column] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-tab>
+</mat-tab-group>

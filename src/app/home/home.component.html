@@ -1,0 +1,19 @@
+<mat-toolbar color="primary" class="mat-elevation-z6" style="display: flex; justify-content: space-between; align-items: center;">
+  <div style="display: flex; align-items: center;">
+    <span style="display: flex; align-items: center;">
+      <mat-icon>assignment</mat-icon>
+      <span>SmartDeclare</span>
+    </span>
+  </div>
+
+  <div style="display: flex; align-items: center;">
+    <a mat-button routerLink="/company">Nouvelle Déclaration</a>
+    <a mat-button routerLink="/company">Liste Des societes</a>
+    <a mat-button routerLink="/adminpanel">Admin Panel</a>
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
+  </div>
+</mat-toolbar>
+
+
+<app-annex1></app-annex1>
+
